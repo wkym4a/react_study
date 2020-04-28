@@ -26,11 +26,11 @@ class App extends Component {
       counter:0,
       msg:'count start!',
     };
-    this.doAction = this.doAction.bind(this);
+    this.doAction = this.doAction2.bind(this);
   }
 
 
-  doAction(e){
+  doAction2(e){
     this.setState((state)=> ({
       counter: state.counter + 1,
       msg: 'count: ' + state.counter
