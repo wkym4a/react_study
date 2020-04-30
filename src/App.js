@@ -4,49 +4,62 @@ import Rect from './Rect';
 import './App.css';
 
 
+let theme = {
+  light:{
+    backgroundColor:"#eef",
+    color:"#006",
+    padding:"10px",
+  },
+  dark:{
+    backgroundColor:"#006",
+    color:"#eef",
+    padding:"10px",
+  }
+};
+
+
+const ThemeContext = React.createContext(theme.light); //★
+
+
 class App extends Component {
+  static contextType = ThemeContext;
 
 
-  msgStyle = {
-    fontSize:"24pt",
-    color:"#900",
-    margin:"20px 0px",
-    padding: "5px",
-    borderBottom:"2px solid #900"
+  render() {
+    return (
+      <div style={this.context}>
+        <Title value="Content page" />
+        <Message value="This is Content sample." />
+        <Message value="※これはテーマのサンプルです。" />
+      </div>
+    );
   }
-  btnStyle = {
-    fontSize:"20pt",
-    padding:"0px 10px"
-  }
+}
 
 
-  constructor(props){
-    super(props);
-    this.state = {
-      counter:0,
-      msg:'count start!',
-    };
-    this.doAction = this.doAction2.bind(this);
-  }
+class Title extends Component {
+  static contextType = ThemeContext;
 
-
-  doAction2(e){
-    this.setState((state)=> ({
-      counter: state.counter + 1,
-      msg: 'count: ' + state.counter
-    }));
-  }
 
   render(){
-    return <div>
-      <h1>React</h1>
-      <p style={this.msgStyle}>{this.state.msg}</p>
-      <button style={this.btnStyle} onClick={this.doAction}>Click</button>
-    </div>;
+    return (
+      <h2 style={this.context}>{this.props.value}</h2>
+    );
   }
+}
 
 
+class Message extends Component {
+  static contextType = ThemeContext;
+
+
+  render(){
+    return (
+        <p  style={this.context}>{this.props.value}</p>
+    );
+  }
 }
 
 
 export default App;
+
