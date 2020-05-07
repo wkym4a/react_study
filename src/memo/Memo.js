@@ -2,12 +2,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 import Item from './Item';
 
-
 class Memo extends Component {
-
 
   render(){
     let data;
@@ -31,7 +28,6 @@ class Memo extends Component {
         <Item key={value.message} value={value} index={n++} />
       ));
       break;
-
 
       default:
       data = this.props.data.map((value)=>(
