@@ -1,22 +1,15 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-
-
-// ステートのマッピング
-function mappingState(state) {
-  return state;
-}
 
 
 // Appコンポーネント
 class App extends Component {
 
 
-  // constructor(props){
-  //   super(props);
-  // }
+  constructor(props){
+    super(props);
+  }
 
   render() {
     return (
@@ -48,10 +41,10 @@ class Message extends Component {
   }
 }
 // ストアのコネクト
-Message = connect(mappingState)(Message);
+Message = connect((state)=>state)(Message);
 
 
-//
+// ボタンのコンポーネント
 class Button extends Component {
   style = {
     fontSize:"16pt",
@@ -67,6 +60,8 @@ class Button extends Component {
   doAction(e){
     if (e.shiftKey){
       this.props.dispatch({ type:'DECREMENT' });
+    } else if (e.ctrlKey){
+      this.props.dispatch({ type:'RESET' });
     } else {
       this.props.dispatch({ type:'INCREMENT' });
     }
