@@ -1,14 +1,14 @@
 import { createStore } from 'redux';
 
 const initData = {
-  data:[{message:'sample data', created:new Date()}],
+  data:[],
   message:'please type message:',
   mode:'default',
   fdata:[]
 };
 
 // レデューサー
-export function memorrrrReducer(state = initData, action) {
+export function memoReducer(state = initData, action) {
   switch (action.type) {
     case 'ADD':
       return addReduce(state, action);
@@ -28,9 +28,11 @@ export function memorrrrReducer(state = initData, action) {
 
 // メモ追加のレデュース処理
 function addReduce(state, action){
+  let d = new Date();
+  let f = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
   let data = {
     message:action.message,
-    created:new Date()
+    created:f
   };
   let newdata = state.data.slice();
   newdata.unshift(data);
@@ -98,4 +100,4 @@ export function findMemo(text) {
 }
 
 // ストアを作成
-export default createStore(memorrrrReducer);
+export default createStore(memoReducer);
